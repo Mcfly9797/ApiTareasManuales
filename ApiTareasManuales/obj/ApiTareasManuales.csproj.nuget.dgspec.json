@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\villarealnah\\source\\repos\\ApiTareasManuales\\ApiTareasManuales.csproj": {}
+    "C:\\Users\\villarealnah\\Documents\\Trabajo\\Sistema skerk\\ApiTareasManuales\\ApiTareasManuales\\ApiTareasManuales.csproj": {}
   },
   "projects": {
-    "C:\\Users\\villarealnah\\source\\repos\\ApiTareasManuales\\ApiTareasManuales.csproj": {
+    "C:\\Users\\villarealnah\\Documents\\Trabajo\\Sistema skerk\\ApiTareasManuales\\ApiTareasManuales\\ApiTareasManuales.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\villarealnah\\source\\repos\\ApiTareasManuales\\ApiTareasManuales.csproj",
+        "projectUniqueName": "C:\\Users\\villarealnah\\Documents\\Trabajo\\Sistema skerk\\ApiTareasManuales\\ApiTareasManuales\\ApiTareasManuales.csproj",
         "projectName": "ApiTareasManuales",
-        "projectPath": "C:\\Users\\villarealnah\\source\\repos\\ApiTareasManuales\\ApiTareasManuales.csproj",
+        "projectPath": "C:\\Users\\villarealnah\\Documents\\Trabajo\\Sistema skerk\\ApiTareasManuales\\ApiTareasManuales\\ApiTareasManuales.csproj",
         "packagesPath": "C:\\Users\\villarealnah\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\villarealnah\\source\\repos\\ApiTareasManuales\\obj\\",
+        "outputPath": "C:\\Users\\villarealnah\\Documents\\Trabajo\\Sistema skerk\\ApiTareasManuales\\ApiTareasManuales\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\villarealnah\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -47,6 +47,12 @@
               "version": "[3.1.7, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.7, )"
             }
