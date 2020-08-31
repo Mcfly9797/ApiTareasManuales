@@ -21,52 +21,58 @@ namespace ApiTareasManuales.Migrations
 
             modelBuilder.Entity("ApiTareasManuales.Models.Disenio", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdDisenio")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("NombreDisenio")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
-                    b.HasKey("Id");
+                    b.HasKey("IdDisenio");
 
                     b.ToTable("Disenio");
                 });
 
             modelBuilder.Entity("ApiTareasManuales.Models.Elemento", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdElemento")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Nombre")
-                        .HasColumnType("int");
+                    b.Property<string>("NombreElemento")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
-                    b.HasKey("Id");
+                    b.HasKey("IdElemento");
 
                     b.ToTable("Elemento");
                 });
 
             modelBuilder.Entity("ApiTareasManuales.Models.Medida", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdMedida")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("NombreMedida")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
-                    b.HasKey("Id");
+                    b.HasKey("IdMedida");
 
                     b.ToTable("Medida");
                 });
 
             modelBuilder.Entity("ApiTareasManuales.Models.Tarea", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdTarea")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -95,10 +101,10 @@ namespace ApiTareasManuales.Migrations
                     b.Property<int>("Tipo_TrabajoId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UsuarioId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdTarea");
 
                     b.HasIndex("DisenioId");
 
@@ -108,105 +114,113 @@ namespace ApiTareasManuales.Migrations
 
                     b.HasIndex("Tipo_TrabajoId");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Tarea");
                 });
 
             modelBuilder.Entity("ApiTareasManuales.Models.Tipo_Trabajo", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdTipoTrabajo")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("NombreTipoTrabajo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
-                    b.HasKey("Id");
+                    b.HasKey("IdTipoTrabajo");
 
                     b.ToTable("Tipo_Trabajo");
                 });
 
-            modelBuilder.Entity("ApiTareasManuales.Models.Tipo_Usuario", b =>
+            modelBuilder.Entity("ApiTareasManuales.Models.Tipo_User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdTipoUser")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("NombreTipoUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
-                    b.Property<int>("Tipo")
+                    b.Property<int>("TipoUser")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdTipoUser");
 
-                    b.ToTable("Tipo_Usuario");
+                    b.ToTable("Tipo_User");
                 });
 
-            modelBuilder.Entity("ApiTareasManuales.Models.Usuario", b =>
+            modelBuilder.Entity("ApiTareasManuales.Models.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdUser")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Clave")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
-                    b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("NombreUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
-                    b.Property<int>("Tipo_UsuarioId")
+                    b.Property<int>("Tipo_UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdUser");
 
-                    b.HasIndex("Tipo_UsuarioId");
+                    b.HasIndex("Tipo_UserId");
 
-                    b.ToTable("Usuario");
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("ApiTareasManuales.Models.Tarea", b =>
                 {
                     b.HasOne("ApiTareasManuales.Models.Disenio", "Disenio")
-                        .WithMany("Tareas")
+                        .WithMany()
                         .HasForeignKey("DisenioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ApiTareasManuales.Models.Elemento", "Elemento")
-                        .WithMany("Tareas")
+                        .WithMany()
                         .HasForeignKey("ElementoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ApiTareasManuales.Models.Medida", "Medida")
-                        .WithMany("Tareas")
+                        .WithMany()
                         .HasForeignKey("MedidaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ApiTareasManuales.Models.Tipo_Trabajo", "Tipo_Trabajo")
-                        .WithMany("Tareas")
+                        .WithMany()
                         .HasForeignKey("Tipo_TrabajoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ApiTareasManuales.Models.Usuario", "Usuario")
+                    b.HasOne("ApiTareasManuales.Models.User", "Usuario")
                         .WithMany()
-                        .HasForeignKey("UsuarioId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ApiTareasManuales.Models.Usuario", b =>
+            modelBuilder.Entity("ApiTareasManuales.Models.User", b =>
                 {
-                    b.HasOne("ApiTareasManuales.Models.Tipo_Usuario", "Tipo_Usuario")
-                        .WithMany("Usuario_TipoUsuario")
-                        .HasForeignKey("Tipo_UsuarioId")
+                    b.HasOne("ApiTareasManuales.Models.Tipo_User", "Tipo_User")
+                        .WithMany()
+                        .HasForeignKey("Tipo_UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
