@@ -26,25 +26,7 @@ namespace ApiTareasManuales.Controllers
         [HttpGet]
         public async Task<ActionResult> GetTarea()
         {
-            var tareas = await _context.Tarea.ToListAsync();
-            var tareasDTO = new List<MedidaDTO>();
-            //foreach (var tarea in tareas)
-            //{
-            //    tareasDTO.Add(new TareaDTO {
-            //    IdTarea 
-            //    NroSerie = tarea.NroSerie,
-            //    Detalle = tarea.Detalle,
-            //    Duracion = tarea.Duracion,
-            //    Fecha = tarea.Fecha,
-            //    Tipo_TrabajoId
-            //    ElementoId
-            //    MedidaId
-            //    DisenioId
-            //    UserId
-
-            //    //APRENDER A HACER UN JOIN CON LINQ Y UNIR A ID TAREA CON LA TABLA TAREA Y ETC
-            //    });
-            //}
+            ObjectResult resp;
 
             var query =
             from tarea in _context.Tarea
@@ -52,14 +34,43 @@ namespace ApiTareasManuales.Controllers
             join elemento in _context.Elemento on tarea.Elemento.IdElemento equals elemento.IdElemento
             join medida in _context.Medida on tarea.Medida.IdMedida equals medida.IdMedida
             join tipo_trabajo in _context.Tipo_Trabajo on tarea.Tipo_Trabajo.IdTipoTrabajo equals tipo_trabajo.IdTipoTrabajo
-            
+            join user in _context.User on tarea.UserId equals user.IdUser
             //where post.ID == id
             //select new { Tarea = tarea, Tipo_Trabajo = tipo_trabajo };
-            select new {id_Tarea = tarea.IdTarea, numeroSerie = tarea.NroSerie, fecha = tarea.Fecha, detalle = tarea.Detalle, duracion = tarea.Duracion, diseño = disenio.NombreDisenio, elemento = elemento.NombreElemento, medida = medida.NombreMedida, tipoTrabajo = tipo_trabajo.NombreTipoTrabajo};
+            select new {id_Tarea = tarea.IdTarea, idUsuario=tarea.UserId, nombreUsuario = user.NombreUser, numeroSerie = tarea.NroSerie, fecha = tarea.Fecha, detalle = tarea.Detalle, duracion = tarea.Duracion, disenio = disenio.NombreDisenio, elemento = elemento.NombreElemento, medida = medida.NombreMedida, tipoTrabajo = tipo_trabajo.NombreTipoTrabajo};
 
-            return Ok (await query.ToListAsync());
+            var tareasDb = await query.ToListAsync();
+            var lstTareaDTO = new List<TareaDTO>();
+            
+            foreach (var tareaDb in tareasDb)
+            {
+                lstTareaDTO.Add( new TareaDTO {
+                    IdTarea = tareaDb.id_Tarea,
+                    NroSerie = tareaDb.numeroSerie,
+                    UserId = tareaDb.idUsuario,
+                    NombreUser = tareaDb.nombreUsuario,
+                    Detalle = tareaDb.detalle,
+                    Duracion = tareaDb.duracion,
+                    Fecha = tareaDb.fecha,
+                    Tipo_Trabajo = tareaDb.tipoTrabajo,
+                    Elemento = tareaDb.elemento,
+                    Medida = tareaDb.medida,
+                    Disenio = tareaDb.disenio
+                });
+            }
+            if (lstTareaDTO.Count != 0)
+            {
+                resp = Ok(lstTareaDTO);
+
+            }
+            else
+            {
+                resp = NotFound("No se encuentran datos");
+            }
+
+            return resp;
+            
             //Original
-
             //return await _context.Tarea.ToListAsync();
         }
 

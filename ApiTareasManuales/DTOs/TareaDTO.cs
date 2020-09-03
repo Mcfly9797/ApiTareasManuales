@@ -9,24 +9,18 @@ namespace ApiTareasManuales.DTOs
 
     public class TareaDTO
     {
+
         public int IdTarea { get; set; }
         public int NroSerie { get; set; }
+        public int UserId { get; set; }
+        public string NombreUser { get; set; }
         public string Detalle { get; set; }
         public DateTime Duracion { get; set; }
         public DateTime Fecha { get; set; }
+        public string Tipo_Trabajo { get; set; }
+        public string Elemento { get; set; }
+        public string Medida { get; set; }
+        public string Disenio { get; set; }
 
-        //Foreign keys
-        public int UserId { get; set; }
-        public int Tipo_TrabajoId { get; set; }
-        public int ElementoId { get; set; }
-        public int MedidaId { get; set; }
-        public int DisenioId { get; set; }
-
-        //Relacion Objetos
-        public virtual UserDTO Usuario { get; set; }
-        public virtual Tipo_TrabajoDTO Tipo_Trabajo { get; set; }
-        public virtual ElementoDTO Elemento { get; set; }
-        public virtual MedidaDTO Medida { get; set; }
-        public virtual DisenioDTO Disenio { get; set; }
     }
 }
