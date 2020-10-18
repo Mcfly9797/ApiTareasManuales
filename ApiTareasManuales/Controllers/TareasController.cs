@@ -37,7 +37,17 @@ namespace ApiTareasManuales.Controllers
             join user in _context.User on tarea.UserId equals user.IdUser
             //where post.ID == id
             //select new { Tarea = tarea, Tipo_Trabajo = tipo_trabajo };
-            select new {id_Tarea = tarea.IdTarea, idUsuario=tarea.UserId, nombreUsuario = user.NombreUser, numeroSerie = tarea.NroSerie, fecha = tarea.Fecha, detalle = tarea.Detalle, duracion = tarea.Duracion, disenio = disenio.NombreDisenio, elemento = elemento.NombreElemento, medida = medida.NombreMedida, tipoTrabajo = tipo_trabajo.NombreTipoTrabajo};
+            select new {id_Tarea = tarea.IdTarea,
+                        idUsuario=tarea.UserId,
+                        nombreUsuario = user.NombreUser,
+                        numeroSerie = tarea.NroSerie,
+                        fecha = tarea.Fecha,
+                        detalle = tarea.Detalle,
+                        duracion = tarea.Duracion,
+                        disenio = disenio.NombreDisenio,
+                        elemento = elemento.NombreElemento,
+                        medida = medida.NombreMedida,
+                        tipoTrabajo = tipo_trabajo.NombreTipoTrabajo};
 
             var tareasDb = await query.ToListAsync();
             var lstTareaDTO = new List<TareaDTO>();
@@ -58,6 +68,8 @@ namespace ApiTareasManuales.Controllers
                     Disenio = tareaDb.disenio
                 });
             }
+            
+            
             if (lstTareaDTO.Count != 0)
             {
                 resp = Ok(lstTareaDTO);
